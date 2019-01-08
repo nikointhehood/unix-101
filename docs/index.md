@@ -1,3 +1,3 @@
 # Unix 101 course
 
-- Download the tutorial 1 [here](tutorial-1.pdf)
+- The tutorial 1 is available [here](tutorial-1.pdf)
