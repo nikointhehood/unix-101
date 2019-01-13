@@ -145,9 +145,29 @@ Every serious company in the world uses a revision control system and fast, scal
 
 \subsection{Installation}
 
-We are not going to go into the details on \texttt{git}'s usage and huge set of features as it would take some time, but we are going to use it to download resources for the exercises.
+We are not going to go into the details on \texttt{git}'s huge set of features as it would take some time, but we are going to at least use it to download resources for the exercises.
 
-First of all, install git if you do not already have it installed in your system. You should know how to install a package by now, if not, read again section 4 of the tutorial!
+First of all, install \texttt{git} if you do not already have it somewhere in your system. You should know how to install a package by now, if not, read again section 4 of the tutorial!
+
+To check out how it works, let us download the git repository\footnote{A git repository is a directory managed by git} containing the exercises. The Github page is available here: \url{https://github.com/nikointhehood/unix-101}. In git language, we \textit{clone} a repository. So, let's clone it! Click on "Clone or download" and retrieve the clone url : \texttt{https://github.com/nikointhehood/unix-101.git}. Then, invoke the command \texttt{git clone}.
+
+\begin{lstlisting}[language=bash]
+$ls # The current directory is empty, let  us clone the repo unix-101
+$git clone https://github.com/nikointhehood/unix-101.git
+Cloning into 'unix-101'...
+remote: Enumerating objects: 40, done.
+remote: Counting objects: 100% (40/40), done.
+remote: Compressing objects: 100% (23/23), done.
+remote: Total 40 (delta 4), reused 40 (delta 4), pack-reused 0
+Unpacking objects: 100% (40/40), done.
+Checking connectivity... done.
+$ls
+unix-101/ # There we have it!
+\end{lstlisting}
+
+Github is a service hosting git servers. There exist others (Gitlab, Bitbucket, even private instances of Gitlab/Github/Bitbucket for companies, etc) but Github is widely used for open-source projects.
+People from all over the world collaborate into writing software and sharing them to the world, for free. This kind of project is called \textit{open-source}: anybody can participate and add new features to them by suggesting changes to the code.
+Actually, a lot of the most impressive computer engineering projects, extensively used by companies all over the world are open-source. The Linux kernel is findable on Github, for example\footnote{Here: \url{https://github.com/torvalds/linux}. Anybody can contribute, but that necessites some mad skillz.}.
 
 \section{Example}
 
