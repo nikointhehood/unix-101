@@ -1,0 +1,127 @@
+ \documentclass[12pt]{article}
+%\usepackage[portuguese]{babel}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{vmargin}
+\setmarginsrb{1.5 cm}{2.5 cm}{1.5 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\let\oldhref\href
+\renewcommand{\href}[2]{\oldhref{#1}{\bfseries#2}}
+
+\usepackage[bottom]{footmisc}
+\usepackage{caption}
+\DeclareCaptionFormat{sanslabel}{#3}%
+\usepackage[section]{placeins}
+\usepackage{xcolor}
+\definecolor{light-gray}{gray}{0.95}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue},
+  backgroundcolor=\color{light-gray},
+  breaklines=true,
+  extendedchars=true,
+  literate={é}{{\'e}}1
+}
+\lstset{aboveskip=15pt,belowskip=15pt}
+\usepackage[autostyle]{csquotes}  
+\def\labelitemi{--}
+\usepackage{enumitem}
+\setlist{nosep}
+\usepackage{booktabs}
+\usepackage{datetime}
+
+\title{Subject 1}								% Title
+%\author{}								% Author
+\date{\today}											% Date
+
+\makeatletter
+\let\thetitle\@title
+%\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{}
+%\rhead{\theauthor}
+\lhead{\thetitle}
+\cfoot{\thepage}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+	\centering
+    \vspace*{0.5 cm}
+    \includegraphics[scale = 0.3]{logo4.png}\\[1.0 cm]
+    \textsc{\LARGE \newline\newline UNIX 101}\\[2.0 cm]
+	\textsc{\Large or "How to feel like a true hack3r"}\\[0.5 cm]
+	\rule{\linewidth}{0.2 mm} \\[0.4 cm]
+	{ \huge \bfseries \thetitle}\\
+	\rule{\linewidth}{0.2 mm} \\[1.5 cm]
+	
+    \thedate
+    
+    
+    
+	
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Foreword}
+\subsection{Notions seen in the tutorial}
+\subsection{Objectives}
+
+\section{Setup}
+\subsection{A word on git}
+\subsection{Installation}
+
+\section{Example}
+
+\section{Exercise}
+\subsection{Exo uno}
+\subsection{Exo duo}
+
+\section{Evaluation}
+
+\subsection{Instructions}
+\newdate{duedate}{30}{01}{2019}
+
+You have to send a tarball (a \texttt{.tar}, not a \texttt{.zip} nor a \texttt{.rar}) of your work before \displaydate{duedate}, 23h59 at nikointhehood@gmail.com.
+
+\subsection{A word on cheating}
+
+You have to remember that you should be studying for your own good. Cheating will not bring you any good in the long term.
+
+Any form of cheating will immediately bring your grade down to 0. Additionally, your main teacher will be taken notice of that.
+
+\textit{Note:} Changing the name of some variables will of course not trick the anti-cheat engine :)
+
+\end{document}
+
+
+
+
+
+
