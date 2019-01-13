@@ -9,3 +9,5 @@ a.sh
 *.blg
 *.aux
 ideas.txt
+*.swo
+*.swp
