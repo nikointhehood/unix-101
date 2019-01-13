@@ -1,0 +1,11 @@
+a.sh
+*.png
+*.out
+*.toc
+*.synctex.gz
+*.log
+*.dvi
+*.bbl
+*.blg
+*.aux
+ideas.txt
