@@ -45,6 +45,20 @@
 \usepackage{booktabs}
 \usepackage{datetime}
 
+% Quoting magic to have the Author of the quote after the actual quote
+\let\oldquote\quote
+\let\endoldquote\endquote
+\renewenvironment{quote}[2][]
+  {\if\relax\detokenize{#1}\relax
+     \def\quoteauthor{#2}%
+   \else
+     \def\quoteauthor{#2~---~#1}%
+   \fi
+   \oldquote}
+  {\par\nobreak\smallskip\hfill(\quoteauthor)%
+   \endoldquote\addvspace{\bigskipamount}}
+
+
 \title{Subject 1}								% Title
 %\author{}								% Author
 \date{\today}											% Date
@@ -114,7 +128,26 @@ Last but not least, you are going to be evaluated on the exercises of this docum
 
 \section{Setup}
 \subsection{A word on git}
+
+\begin{quote}{\texttt{man git}}
+\textit{Git is a fast, scalable, distributed \textbf{revision control system} with and unusually rich command set that provides both high-level operations and full access to internals.}
+\end{quote}
+
+To explain it in clearer terms, \texttt{git} is a tool that allows one to versionate documents. In software engineering (actually, in all of the fields of computer engineering), it is primordial to keep track of its work, especially when collaborating on the same projects.
+
+\begin{itemize}
+\item You have been working alone on a project for two months but one day you mess things up and delete some files? \texttt{git} can rollback the changes.
+\item You want to try to revamp your code but are not sure that you will be able to have a working version on time for the deadline? With \texttt{git}, you can keep a marker on the last working version and can rollback to it at any time.
+\item You are working in a team on the same project and want to share your work without conflicts? A \texttt{git} server can save your life.
+\end{itemize}
+
+Every serious company in the world uses a revision control system and fast, scalable and distributed attributes, \texttt{git} is by far the most popular.
+
 \subsection{Installation}
+
+We are not going to go into the details on \texttt{git}'s usage and huge set of features as it would take some time, but we are going to use it to download resources for the exercises.
+
+First of all, install git if you do not already have it installed in your system. You should know how to install a package by now, if not, read again section 4 of the tutorial!
 
 \section{Example}
 
@@ -123,7 +156,6 @@ Last but not least, you are going to be evaluated on the exercises of this docum
 \subsection{Exo duo}
 
 \section{Evaluation}
-
 \subsection{Instructions}
 \newdate{duedate}{30}{01}{2019}
 
