@@ -6,7 +6,7 @@ from typing import List, Tuple
 def launch_command(args: List[str]) -> Tuple[bool, bytes]:
     try:
         done = run(["./biggest.py"] + args,
-                   stdin=PIPE, stdout=PIPE,
+                   stderr=PIPE, stdout=PIPE,
                    timeout=2, check=True)
 
         if done.stderr:
@@ -16,7 +16,7 @@ def launch_command(args: List[str]) -> Tuple[bool, bytes]:
     except FileNotFoundError:
         return False, b"File not found. Make sure your script is correctly named"
     except CalledProcessError as err:
-        return False, b"There was an error(" + err.stderr + b")"
+        return False, b"\n" + err.stderr
     except TimeoutExpired as err:
         return False, b"Took too long to execute!"
 
@@ -35,9 +35,9 @@ def launch_tests(test_cases: List[Tuple[List, bytes]]) -> None:
         colored_print(test_arguments, False)
         if completed_okay:
             print("--> Got unexpected output, obtained {} when {} was "
-                  "expected".format(output.decode(), expected_output.decode()))
+                  "expected\n".format(repr(output.decode()), repr(expected_output.decode())), end='')
         else:
-            print("--> Your script encountered an error: {}".format(output.decode()))
+            print("--> Your script encountered an error: {}\n".format(output.decode()), end='')
         return
 
     print("\nAll tests passed! Good job :). Make sure you did not forget any not tested case")
