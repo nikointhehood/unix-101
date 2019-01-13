@@ -110,6 +110,35 @@
 
 You have to send a tarball (a \texttt{.tar}, not a \texttt{.zip} nor a \texttt{.rar}) of your work before \displaydate{duedate}, 23h59 at nikointhehood@gmail.com.
 
+The subject and the content of your email are not important but your tarball should follow the format \texttt{firstname\_lastname.tar.bz2} (of course, you have to replace \texttt{firstname} and \texttt{lastname} by yours).
+
+The command to work with tarballs is \texttt{tar}. To create one, use the following command:
+
+\begin{lstlisting}[language=bash]
+$ls
+subject/ tutorial/
+# c stands for create, v stands for verbose, f allows one to input a custom name for the archive and j indicates the usage of bzip2
+$tar cvfj firstname_lastname.tar.bz2 subject/
+(...)
+$ls
+subject/ tutorial firstname_lastname.tar.bz2
+\end{lstlisting}
+
+To verify that your archive contains everything you want, copy it somewhere else and decompress it:
+
+\begin{lstlisting}[language=bash]
+$ls
+subject/ tutorial firstname_lastname.tar.bz2
+$mkdir /tmp/test
+$cp firstname_lastname.tar.bz2 /tmp/test
+$cd /tmp/test
+# x stands for eXtract, v for verbose and f allows one to indicate which file tar should work with
+$tar xvf firstname_lastname.tar.bz2
+$ls -l
+# You should see what I will obtain when extracting your archive
+(...)
+\end{lstlisting}
+
 \subsection{A word on cheating}
 
 You have to remember that you should be studying for your own good. Cheating will not bring you any good in the long term.
