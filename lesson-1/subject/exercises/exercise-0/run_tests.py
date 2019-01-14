@@ -6,6 +6,7 @@ if __name__ == "__main__":
     sys.path.append("..")
     from tests_framework import launch_tests #pylint: disable=import-error
 
+    FILENAME = "./biggest.py"
     USAGE_TEXT = b"Usage: ./biggest.py integer1 integer2\n"
     TEST_CASES = [
         (["1", "2"], b"2\n"),
@@ -22,4 +23,4 @@ if __name__ == "__main__":
         (["0.7", "0.3"], USAGE_TEXT),
     ]
 
-    launch_tests(TEST_CASES)
+    launch_tests(FILENAME, TEST_CASES)

@@ -1,9 +1,9 @@
 from subprocess import run, PIPE, CalledProcessError, TimeoutExpired
 from typing import List, Tuple
 
-def launch_command(args: List[str]) -> Tuple[bool, bytes]:
+def launch_command(filename: str, args: List[str]) -> Tuple[bool, bytes]:
     try:
-        done = run(["./biggest.py"] + args,
+        done = run([filename] + args,
                    stderr=PIPE, stdout=PIPE,
                    timeout=2, check=True)
 
@@ -17,6 +17,8 @@ def launch_command(args: List[str]) -> Tuple[bool, bytes]:
         return False, b"\n" + err.stderr
     except TimeoutExpired as err:
         return False, b"Took too long to execute!"
+    except PermissionError:
+        return False, b"Permission denied. Are you sure your script is executable?"
 
 def colored_print(test_name: str, success: bool) -> None:
     if success:
@@ -24,9 +26,9 @@ def colored_print(test_name: str, success: bool) -> None:
     else:
         print("\x1b[7;31;40mTest {} - {}\x1b[0m".format(test_name, "FAILED"))
 
-def launch_tests(test_cases: List[Tuple[List, bytes]]) -> None:
+def launch_tests(filename: str, test_cases: List[Tuple[List, bytes]]) -> None:
     for test_arguments, expected_output in test_cases:
-        completed_okay, output = launch_command(test_arguments)
+        completed_okay, output = launch_command(filename, test_arguments)
         if completed_okay and output == expected_output:
             colored_print(test_arguments, True)
             continue
