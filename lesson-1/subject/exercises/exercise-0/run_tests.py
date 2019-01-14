@@ -53,6 +53,10 @@ if __name__ == "__main__":
         (["0.1"], USAGE_TEXT),
         (["1", "2", "3", "-8"], USAGE_TEXT),
         (["mdr", "3"], USAGE_TEXT),
+        (["0", "3"], b"3\n"),
+        (["0.7", "1"], USAGE_TEXT),
+        (["19", "19"], b"The integers are equal\n"),
+        (["0.7", "0.3"], USAGE_TEXT),
     ]
 
     launch_tests(TEST_CASES)
