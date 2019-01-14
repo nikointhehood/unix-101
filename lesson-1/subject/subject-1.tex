@@ -27,6 +27,7 @@
 \usepackage[section]{placeins}
 \usepackage{xcolor}
 \definecolor{light-gray}{gray}{0.95}
+\definecolor{medium-gray}{gray}{0.5}
 \usepackage{listings}
 \lstset{basicstyle=\ttfamily,
   showstringspaces=false,
@@ -44,6 +45,11 @@
 \setlist{nosep}
 \usepackage{booktabs}
 \usepackage{datetime}
+\lstdefinestyle{codestyle}{
+    numbers=left,
+    numbersep=10pt,
+    numberstyle=\color{medium-gray}
+}
 
 % Quoting magic to have the Author of the quote after the actual quote
 \let\oldquote\quote
