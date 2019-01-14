@@ -176,7 +176,47 @@ Github is a service hosting git servers. There exist others (Gitlab, Bitbucket, 
 People from all over the world collaborate into writing software and sharing them to the world, for free. This kind of project is called \textit{open-source}: anybody can participate and add new features to them by suggesting changes to the code.
 Actually, a lot of the most impressive computer engineering projects, extensively used by companies all over the world are open-source. The Linux kernel is findable on Github, for example\footnote{Here: \url{https://github.com/torvalds/linux}. Anybody can contribute, but that necessites some mad skillz.}.
 
-\section{Example}
+\section{Exercise 0: max (example)}
+
+Each exercise you are going to have to do is bundled with tests.
+Let us proceed with an example.
+
+\subsection{Goal}
+
+\begin{description}
+        \item[Script name:] \texttt{biggest.py}
+\end{description}
+
+You have to write a Python3 script that will take two integer arguments and print the bigger one, followed by a line feed\footnote{In UNIX, a line feed is represented by a \texttt{\char`\\
+n}. Some printing functions, like Python's \texttt{print()} automatically add one at the end of the printed message}.
+
+If the two integers are equal, it should print \texttt{"The integers are equal"}, followed by a line feed
+
+In case of an error, it should print \texttt{"Usage: ./biggest.py integer1 integer2"}, followed by a line feed.
+
+The error cases are:
+
+\begin{itemize}
+	\item If there are less than two arguments
+	\item If there are more than two arguments
+	\item If the arguments are not integers
+\end{itemize}
+
+\subsection{Example}
+
+\begin{lstlisting}[language=bash]
+$./biggest.py 7 121
+121
+$./biggest.py -1 31
+31
+$./biggest.py 8
+Usage: ./biggest.py integer1 integer2
+$./biggest.py 1 2 3 4 5
+Usage: ./biggest.py integer1 integer2
+$./biggest.py 0.7 11
+Usage: ./biggest.py integer1 integer2
+\end{lstlisting}
+
 
 \section{Exercise}
 \subsection{Exo uno}
