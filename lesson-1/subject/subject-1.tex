@@ -194,6 +194,8 @@ If the two integers are equal, it should print \texttt{"The integers are equal"}
 
 In case of an error, it should print \texttt{"Usage: ./biggest.py integer1 integer2"}, followed by a line feed.
 
+Also, you are asked to provide a small file named \texttt{README} explaining how you solved the exercise.
+
 The error cases are:
 
 \begin{itemize}
@@ -470,8 +472,17 @@ Test ['0.7', '0.3'] - PASSED
 All tests passed! Good job :). Make sure you did not forget any untested behavior
 \end{lstlisting}
 
-This exercise is completed. This kind of development mindset is the one you should follow for the next exercises. Also, you will often have to look into Python's documentation: this is normal, you cannot already know every built-in function.
+This exercise is completed. As asked in the exercise, we should now write a small text in a file named \texttt{README} explaining how our algorithm works and what were the pain points:
 
+\begin{lstlisting}[language=bash]
+$ls
+biggest.py*  README  run_tests.py*
+$cat README
+The goal of the exercise was to print the highest value of the command-line arguments.
+I had difficulties with sanitizing the user input and I solved it using type casting and by checking the number of arguments in argv.
+\end{lstlisting}
+
+This kind of development mindset is the one you should follow for the next exercises.
 
 \section{Exercise 1: max advanced}
 
