@@ -320,6 +320,157 @@ Let us try:
 \end{lstlisting}
 
 
+\subsection{Walkthrough}
+
+Now this part will not always be there but I am going to guide you on how to solve exercise 0:
+
+\subsubsection{Getting started}
+Navigate to the directory \texttt{exercise-0}:
+
+\begin{lstlisting}[language=bash]
+$cd lesson-1/subject/exercises/exercise-0/
+$ls
+run_tests.py*
+\end{lstlisting}
+
+Here, there is only one executable script. It allows you to run the tests. Let us try:
+
+\begin{lstlisting}[language=bash]
+$./run_tests.py 
+Test ['1', '2'] - FAILED
+--> Your script encountered an error: File not found. Make sure your script is correctly named
+\end{lstlisting}
+
+Oh, an error. Well, that makes sense, we did not provide our solution to the exercise. So, let us solve it then.
+
+\subsubsection{Working on the exercise}
+
+Let's create a new file named \texttt{biggest.py} and write our solution.
+
+\begin{lstlisting}[language=python,style=codestyle,title=biggest.py]
+#! /usr/bin/python3
+import sys # This import allows us to interact with the command line arguments
+
+# First, we declare a function which will do the comparison job
+def biggest(int1, int2):
+    if int1 > int2:
+        print(int1)
+    elif int2 > int1:
+        print(int2)
+    else:
+        print("The integers are equal")
+
+# Let's get the command line arguments
+first_int = int(sys.argv[1])
+second_int = int(sys.argv[2])
+
+# Now, call the function with the arguments previously retrieved
+biggest(first_int, second_int)
+\end{lstlisting}
+
+Now that the code seems good, let us test it manually.
+
+\begin{lstlisting}[language=bash]
+$chmod +x biggest.py
+$./biggest.py 20 3
+20
+$./biggest.py 7 11
+11
+$./biggest.py -1 7
+7
+\end{lstlisting}
+
+It looks fine, but is that enough? Let us launch the tests.
+
+\begin{lstlisting}[language=bash]
+$./run_tests.py
+Test ['1', '2'] - PASSED
+Test ['1123123', '2'] - PASSED
+Test ['-17', '13'] - PASSED
+Test ['0.3', '13'] - FAILED
+--> Your script encountered an error: 
+Traceback (most recent call last):
+  File "./biggest.py", line 14, in <module>
+    first_int = int(sys.argv[1])
+ValueError: invalid literal for int() with base 10: '0.3'
+\end{lstlisting}
+
+It seems that our script is not doing well with edge cases. This test just demonstrated that floating (e.g 1.7 or -3.1) numbers generate a \texttt{ValueError} in our code.
+The mission now is to handle all of the cases that we can think of and fix our script little by little.
+
+To handle this error case, we simply have to check that the casts of the arguments to \texttt{int} do not raise a \texttt{ValueError}:
+
+\begin{lstlisting}[language=python,style=codestyle,title=biggest.py]
+#! /usr/bin/python3
+import sys # This import allows us to access argv, the list containing the command line arguments
+
+# First, we declare a function which will do the comparison job
+def biggest(int1, int2):
+    if int1 > int2:
+        print(int1)
+    elif int2 > int1:
+        print(int2)
+    else:
+        print("The integers are equal")
+
+# Let's try to get the command line arguments
+try:
+    first_int = int(sys.argv[1])
+    second_int = int(sys.argv[2])
+    # Now, call the function with the arguments previously retrieved
+    biggest(first_int, second_int)
+except ValueError:
+    print("Usage: ./biggest.py integer1 integer2")
+\end{lstlisting}
+
+Running the tests again, we encounter another error on the number of arguments: this can be corrected by checking first that we are only given two additional arguments (the first one being the script filename, \texttt{biggest.py}).
+
+\begin{lstlisting}[style=codestyle,language=python,title=biggest.py]
+#! /usr/bin/python3
+import sys # This import allows us to access argv, the list containing the command line arguments
+
+# First, we declare a function which will do the comparison job
+def biggest(int1, int2):
+    if int1 > int2:
+        print(int1)
+    elif int2 > int1:
+        print(int2)
+    else:
+        print("The integers are equal")
+
+# Let's try to get the command line arguments
+try:
+    if len(sys.argv) != 3: # Actually, the target value is 3 because the first element of argv is always the name of the script
+        print("Usage: ./biggest.py integer1 integer2")
+    else:
+        first_int = int(sys.argv[1])
+        second_int = int(sys.argv[2])
+        # Now, call the function with the arguments previously retrieved
+        biggest(first_int, second_int)
+except ValueError:
+    print("Usage: ./biggest.py integer1 integer2")
+\end{lstlisting}
+
+Running the tests one last time will only display green success messages:
+\begin{lstlisting}[language=bash]
+./run_tests.py 
+Test ['1', '2'] - PASSED
+Test ['1123123', '2'] - PASSED
+Test ['-17', '13'] - PASSED
+Test ['0.3', '13'] - PASSED
+Test ['13'] - PASSED
+Test ['0.1'] - PASSED
+Test ['1', '2', '3', '-8'] - PASSED
+Test ['mdr', '3'] - PASSED
+Test ['0', '3'] - PASSED
+Test ['0.7', '1'] - PASSED
+Test ['19', '19'] - PASSED
+Test ['0.7', '0.3'] - PASSED
+
+All tests passed! Good job :). Make sure you did not forget any untested behavior
+\end{lstlisting}
+
+This exercise is completed. This kind of development mindset is the one you should follow for the next exercises. Also, you will often have to look into Python's documentation: this is normal, you cannot already know every built-in function.
 
 \section{Exercise}
 \subsection{Exo uno}
