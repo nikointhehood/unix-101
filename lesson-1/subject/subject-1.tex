@@ -472,9 +472,44 @@ All tests passed! Good job :). Make sure you did not forget any untested behavio
 
 This exercise is completed. This kind of development mindset is the one you should follow for the next exercises. Also, you will often have to look into Python's documentation: this is normal, you cannot already know every built-in function.
 
-\section{Exercise}
-\subsection{Exo uno}
-\subsection{Exo duo}
+
+\section{Exercise 1: max advanced}
+
+\subsection{Goal}
+
+\begin{description}
+        \item[Script name:] \texttt{biggest\_advanced.py}
+\end{description}
+
+You have to write a Python3 script that will take an arbitrary number of integer arguments and print the bigger one, followed by a line feed.
+
+In the case where all of the integers are the same, it should print one of them, followed by a line feed.
+
+In case of an error, it should print:
+
+\texttt{"Usage: ./biggest\_advanced.py integer1 integer2 [integer3]..."}, followed by a line feed.
+
+The error cases are:
+
+\begin{itemize}
+	\item If there are less than two arguments
+	\item If the arguments are not integers
+\end{itemize}
+
+\subsection{Example}
+
+\begin{lstlisting}[language=bash]
+$./biggest_advanced.py 3 17
+17
+./biggest_advanced.py 3 17 141
+141
+./biggest_advanced.py -1 77 -31 55
+77
+./biggest_advanced.py 3
+Usage: ./biggest_advanced.py integer1 integer2 [integer3]...
+./biggest_advanced.py 27 27 27
+27
+\end{lstlisting}
 
 \section{Evaluation}
 \subsection{Instructions}
