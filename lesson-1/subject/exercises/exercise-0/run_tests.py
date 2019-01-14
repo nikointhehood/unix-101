@@ -1,48 +1,11 @@
 #! /usr/bin/python3
 
-from subprocess import run, PIPE, CalledProcessError, TimeoutExpired
-from typing import List, Tuple
-
-def launch_command(args: List[str]) -> Tuple[bool, bytes]:
-    try:
-        done = run(["./biggest.py"] + args,
-                   stderr=PIPE, stdout=PIPE,
-                   timeout=2, check=True)
-
-        if done.stderr:
-            return False, done.stderr
-        return True, done.stdout
-
-    except FileNotFoundError:
-        return False, b"File not found. Make sure your script is correctly named"
-    except CalledProcessError as err:
-        return False, b"\n" + err.stderr
-    except TimeoutExpired as err:
-        return False, b"Took too long to execute!"
-
-def colored_print(test_name: str, success: bool) -> None:
-    if success:
-        print("\x1b[7;32;40mTest {} - {}\x1b[0m".format(test_name, "PASSED"))
-    else:
-        print("\x1b[7;31;40mTest {} - {}\x1b[0m".format(test_name, "FAILED"))
-
-def launch_tests(test_cases: List[Tuple[List, bytes]]) -> None:
-    for test_arguments, expected_output in test_cases:
-        completed_okay, output = launch_command(test_arguments)
-        if completed_okay and output == expected_output:
-            colored_print(test_arguments, True)
-            continue
-        colored_print(test_arguments, False)
-        if completed_okay:
-            print("--> Got unexpected output, obtained {} when {} was "
-                  "expected\n".format(repr(output.decode()), repr(expected_output.decode())), end='')
-        else:
-            print("--> Your script encountered an error: {}\n".format(output.decode()), end='')
-        return
-
-    print("\nAll tests passed! Good job :). Make sure you did not forget any not tested case")
-
 if __name__ == "__main__":
+    # This is utterly ugly, but I don't care
+    import sys
+    sys.path.append("..")
+    from tests_framework import launch_tests #pylint: disable=import-error
+
     USAGE_TEXT = b"Usage: ./biggest.py integer1 integer2\n"
     TEST_CASES = [
         (["1", "2"], b"2\n"),
