@@ -217,6 +217,109 @@ $./biggest.py 0.7 11
 Usage: ./biggest.py integer1 integer2
 \end{lstlisting}
 
+\subsection{New notions}
+
+To complete this exercise, you need to know a few more things.
+
+\subsubsection{Arguments retrieval}
+
+UNIX programs are launched through the command line. As we have seen with the many commands we learnt in the tutorial, one can pass command line arguments to change their behavior.
+
+So how does a program retrieve the user's arguments? Well it is system-dependant but usually, programs can access them using the \texttt{argv} variable. In Python, one must first import the \texttt{sys} package and can then look for the program arguments in the variable \texttt{sys.argv}.
+
+\texttt{sys.argv} is a list containing the following items:
+
+\begin{itemize}
+\item At index 0, the name of the Python program
+\item At index 1, the first argument
+\item At index 2, the second argument
+\item At index 3, the third argument
+\item ...
+\end{itemize}
+
+Let us check out an example:
+
+\begin{lstlisting}[language=python,style=codestyle,title=print\_argv.py]
+#! /usr/bin/python3
+
+import sys
+print("argv is a list of", len(sys.argv), "elements:", sys.argv)
+\end{lstlisting}
+
+Now, let us see what happens with zero, one or multiple command line arguments:
+
+\begin{lstlisting}[language=bash]
+$./print_argv.py 
+argv is a list of 1 elements: ['./print_argv.py']
+$./print_argv.py hello
+argv is a list of 2 elements: ['./print_argv.py', 'hello']
+$./print_argv.py hello 47
+argv is a list of 3 elements: ['./print_argv.py', 'hello', '47']
+$./print_argv.py hello 47 again?
+argv is a list of 4 elements: ['./print_argv.py', 'hello', '47', 'again?']
+$./print_argv.py hello 47 again? last_one333KK4..
+argv is a list of 5 elements: ['./print_argv.py', 'hello', '47', 'again?', 'last_one333KK4..']
+\end{lstlisting}
+
+\subsubsection{Type casting}
+
+There is an important concept in programmation: type casting. It allows one to change the type of a variable. The possible type of casts differ from one language to another.
+
+It is extra useful because some functions only take some kind of types as argument.
+
+Let us see some examples.
+
+\begin{lstlisting}[language=python,style=codestyle,title=example\_cast.py]
+#! /usr/bin/python3
+
+my_str = "37.3"
+print(my_str, "->", type(my_str))
+# Some casts are possible:
+print(list(my_str), "->", type(list(my_str)))
+print(float(my_str), "->", type(float(my_str)))
+
+# Some are impossible:
+print(int(my_str), "->", type(int(my_str)))
+\end{lstlisting}
+
+Executing it, we see that we can make a \texttt{str} become a \texttt{float} or a \texttt{list} but not an \texttt{int}:
+
+\begin{lstlisting}[language=bash]
+37.3 -> <class 'str'>
+['3', '7', '.', '3'] -> <class 'list'>
+37.3 -> <class 'float'>
+Traceback (most recent call last):
+  File "./example_cast.py", line 10, in <module>
+    print(int(my_str), "->", type(int(my_str)))
+ValueError: invalid literal for int() with base 10: '37.3'
+\end{lstlisting}
+
+Actually, the error lies in the fact that the \texttt{37.3} can be interpreted by python as a float because it looks like one, but not as an \texttt{int} because \texttt{int} have round values.
+
+Casting a \texttt{str} with a round value works:
+
+\begin{lstlisting}[language=python,style=codestyle,title=example\_cast\_again.py]
+#! /usr/bin/python3
+
+my_str = "37"
+print(my_str, "->", type(my_str))
+# list, float and int should work with this value:
+print(list(my_str), "->", type(list(my_str)))
+print(float(my_str), "->", type(float(my_str)))
+print(int(my_str), "->", type(int(my_str)))
+\end{lstlisting}
+
+Let us try:
+
+\begin{lstlisting}[language=bash]
+./example_cast_again.py 
+37 -> <class 'str'>
+['3', '7'] -> <class 'list'>
+37.0 -> <class 'float'>
+37 -> <class 'int'>
+\end{lstlisting}
+
+
 
 \section{Exercise}
 \subsection{Exo uno}
