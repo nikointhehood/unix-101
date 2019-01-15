@@ -791,6 +791,22 @@ Could not open file /tmp/restricted_file.txt: Permission denied!
 
 Additionally, when one tries to perform non-allowed file object actions (like reading from a file opened in write mode), Python will raise a \texttt{io.UnsupportedOperation} (\url{https://docs.python.org/3.5/library/io.html\#io.UnsupportedOperation}).
 
+\subsubsection{Special trick to close files}
+
+Another way to open and close a file is to use a \textit{context manager}. It is done using the \texttt{with} keyword:
+
+\begin{lstlisting}[language=python,style=codestyle,title=context\_manager\_read.py]
+#! /usr/bin/python3
+
+# Open the file
+with open("/tmp/restricted_file.txt", "r") as fo:
+    print(fo.read(10)) # Print the first 10 characters of the file
+# When exiting the indented block, fo.close() is automatically called
+\end{lstlisting}
+
+It allows one to not bother about closing files. Also, it has another utility: if an exception is raised inside the block, the file will still be properly closed by the context manager.
+
+Last but not least, the syntax is way clearer than the standard one. You are strongly advised to use the \texttt{with} keyword, as the fact that files you open are properly closed will be tested.
 
 \section{Exercise 5: print\_first\_line\_better}
 \subsection{Goal}
