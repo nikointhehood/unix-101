@@ -575,6 +575,54 @@ $./longest_words.py q w e r t y
 q,w,e,r,t,y
 \end{lstlisting}
 
+\section{Exercise 3: my\_range}
+\subsection{Goal}
+
+\begin{description}
+        \item[Script name:] \texttt{my\_range.py}
+        \item[Online help:] Check out the following links for more documentation
+	\begin{itemize}
+		\item \texttt{str.join()}: \href{https://docs.python.org/3.5/library/stdtypes.html\#str.join}{Python3 official documentation}
+		\item \texttt{range()}: \href{https://docs.python.org/3.5/library/stdtypes.html\#range}{Python3 official documentation}
+	\end{itemize}
+\end{description}
+
+You have to write a Python3 script that will take one to three integer arguments as input.
+It should then print the sequence of integers python's \texttt{range} function would generate, separated by spaces and followed by a line feed.
+
+In case of an error, it should print:
+
+\texttt{"Usage: ./my\_range.py int1 [int2] [int3]"}, followed by a line feed.
+
+Also, you are asked to provide a small file named \texttt{README} explaining how you solved the exercise.
+
+The error cases are:
+
+\begin{itemize}
+	\item If there are no argument
+	\item If there are more than three arguments
+	\item If the arguments are not integers
+\end{itemize}
+
+\textit{\textbf{Note:}} This is not a trivial exercise. Solve it little by little. First, simple cases, then more complicated cases and finally, edge cases.
+
+\subsection{Example}
+
+\begin{lstlisting}[language=bash]
+$./my_range.py 1 10
+1 2 3 4 5 6 7 8 9
+$./my_range.py 1 10 1
+1 2 3 4 5 6 7 8 9
+$./my_range.py 1 10 2
+1 3 5 7 9
+4./my_range.py 10 1 -1
+10 9 8 7 6 5 4 3 2
+$./my_range.py 10 1
+
+$./my_range.py aaa
+Usage: ./my_range.py int1 [int2] [int3]
+\end{lstlisting}
+
 \section{Evaluation}
 \subsection{Instructions}
 \newdate{duedate}{30}{01}{2019}
