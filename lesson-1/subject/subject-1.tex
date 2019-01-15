@@ -623,6 +623,56 @@ $./my_range.py aaa
 Usage: ./my_range.py int1 [int2] [int3]
 \end{lstlisting}
 
+\section{Exercise 4: print\_first\_line}
+\subsection{Goal}
+
+\begin{description}
+        \item[Script name:] \texttt{print\_first\_line.py}
+        \item[Online help:] Check out the following links for more documentation
+	\begin{itemize}
+		\item \texttt{open()} prototype: \href{https://docs.python.org/3/library/functions.html\#open}{Python3 official documentation}
+		\item File object functions: \href{https://docs.python.org/3.5/library/io.html\#i-o-base-classes}{Python3 official documentation}
+		\item List of OS exceptions: \href{https://docs.python.org/3.5/library/exceptions.html\#os-exceptions}{Python3 official documentation}
+	\end{itemize}
+\end{description}
+
+You have to write a Python3 script that will take one string argument as input. The string argument should be the filepath to a file.
+
+Your script should read the file given as argument and print its first line, followed by a line feed. For this exercise, you can assume that the file will only contain ASCII characters.
+
+\begin{itemize}
+\item If the current user does not have sufficient permissions to read the file, print \texttt{"Unsufficient permissions"}, followed by a line feed.
+
+\item If the file does not exist, print \texttt{"The file does not exist"}, followed by a line feed.
+
+\item If another error is raised, print \texttt{"Unexpected error"}, followed by a line feed.
+
+\item If the number of arguments is different than 1, print the following usage, followed by a line feed: \texttt{"Usage: ./print\_first\_line.py filepath"}.
+\end{itemize}
+
+Also, you are asked to provide a small file named \texttt{README} explaining how you solved the exercise.
+
+\subsection{Example}
+
+\begin{lstlisting}[language=bash]
+$./print_first_line.py 
+Usage: ./print_first_line.py filepath
+$./print_first_line.py /etc/hosts aaa
+Usage: ./print_first_line.py filepath
+$./print_first_line.py /etc/hosts
+127.0.0.1	localhost
+
+$./print_first_line.py /etc/shadow
+Unsufficient permissions
+$./print_first_line.py ../tests_framework.py 
+from subprocess import run, PIPE, CalledProcessError, TimeoutExpired
+
+$./print_first_line.py resources/no_line_feed.txt 
+This is a file which does not end with a line feed.
+$./print_first_line.py resources/
+Unexpected error
+\end{lstlisting}
+
 \section{Evaluation}
 \subsection{Instructions}
 \newdate{duedate}{30}{01}{2019}
