@@ -23,6 +23,9 @@ if __name__ == "__main__":
         (["/etc/shadow"], b"Unsufficient permissions\n"),
         (["resources/hosts"], b"127.0.0.1\tlocalhost\n\n"),
         (["resources/no_line_feed.txt"], b"This is a file which does not end with a line feed.\n"),
+        (["resources/"], b"Unexpected error\n"),
+        (["resources"], b"Unexpected error\n"),
+        (["run_tests.py"], b"#! /usr/bin/python3\n\n"),
 
         # Fail cases
         ([], USAGE_TEXT),
