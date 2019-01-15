@@ -791,6 +791,39 @@ Could not open file /tmp/restricted_file.txt: Permission denied!
 
 Additionally, when one tries to perform non-allowed file object actions (like reading from a file opened in write mode), Python will raise a \texttt{io.UnsupportedOperation} (\url{https://docs.python.org/3.5/library/io.html\#io.UnsupportedOperation}).
 
+
+\section{Exercise 5: print\_first\_line\_better}
+\subsection{Goal}
+
+\begin{description}
+        \item[Script name:] \texttt{print\_first\_line\_better.py}
+        \item[Online help:] Check out the following links for more documentation
+	\begin{itemize}
+		\item \texttt{print()}'s prototype: \href{https://docs.python.org/3/library/functions.html\#print}{Python3 official documentation}
+	\end{itemize}
+\end{description}
+
+You have to write a Python3 script that will do the exact same thing as the previous one, except that it should not add a line feed after printing the first line of a file.
+
+\subsection{Example}
+
+\begin{lstlisting}[language=bash]
+$./print_first_line_better.py 
+Usage: ./print_first_line.py filepath
+$./print_first_line_better.py /etc/hosts aaa
+Usage: ./print_first_line.py filepath
+$./print_first_line_better.py /etc/hosts
+127.0.0.1	localhost
+$./print_first_line_better.py /etc/shadow
+Unsufficient permissions
+$./print_first_line_better.py ../tests_framework.py 
+from subprocess import run, PIPE, CalledProcessError, TimeoutExpired
+$./print_first_line_better.py resources/no_line_feed.txt 
+This is a file which does not end with a line feed.$./print_first_line_better.py resources/ #Notice the difference?
+Unexpected error
+\end{lstlisting}
+
+
 \section{Evaluation}
 \subsection{Instructions}
 \newdate{duedate}{30}{01}{2019}
