@@ -11,3 +11,4 @@ a.sh
 ideas.txt
 *.swo
 *.swp
+__pycache__/
