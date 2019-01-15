@@ -535,10 +535,41 @@ Usage: ./biggest_advanced.py integer1 integer2 [integer3]...
 \end{lstlisting}
 
 
-\section{Exercise 2: }
+\section{Exercise 2: Long long words}
 \subsection{Goal}
+
+\begin{description}
+        \item[Script name:] \texttt{longest\_words.py}
+\end{description}
+
+You have to write a Python3 script that will take an arbitrary number of \texttt{str} arguments and print the longest ones, separated by a comma,  in the order in which they appeared, followed by a line feed.
+
+In case of an error, it should print:
+
+\texttt{"Usage: ./longest\_word.py arg1 [arg2]..."}, followed by a line feed.
+
+Also, you are asked to provide a small file named \texttt{README} explaining how you solved the exercise.
+
+The error cases are:
+
+\begin{itemize}
+	\item If there are no argument
+\end{itemize}
+
 \subsection{Example}
 
+\begin{lstlisting}[language=bash]
+$./longest_words.py bonjour ahbon
+bonjour
+$./longest_words.py abc def ghi
+abc,def,ghi
+$./longest_words.py baobab bonnet arbre
+baobab,bonnet
+$./longest_words.py 
+Usage: ./longest_words.py arg1 [arg2]...
+$./longest_words.py q w e r t y
+q,w,e,r,t,y
+\end{lstlisting}
 
 \section{Evaluation}
 \subsection{Instructions}
