@@ -7,7 +7,7 @@ if __name__ == "__main__":
     from tests_framework import launch_tests #pylint: disable=import-error
 
     FILENAME = "./my_range.py"
-    USAGE_TEXT = b"Usage: " + FILENAME.encode() + b" start end [increment]\n"
+    USAGE_TEXT = b"Usage: " + FILENAME.encode() + b" int1 [int2] [int3]\n"
 
     def my_range(a, b = None, c = 1):
         if b == None:
@@ -26,7 +26,6 @@ if __name__ == "__main__":
         (["10", "5", "-1"], my_range(10, 5, -1)),
         (["0", "10", "-1"], my_range(0, 10, -1)),
         (["10", "0", "-1"], my_range(10, 0, -1)),
-        (["10"], my_range(10)),
         (["222", "999", "33"], my_range(222, 999, 33)),
         (["-222", "-999", "-33"], my_range(-222, -999, -33)),
         (["-222", "-999", "33"], my_range(-222, -999, 33)),
@@ -41,6 +40,10 @@ if __name__ == "__main__":
         (["1", "a"], USAGE_TEXT),
         (["1", "0.3"], USAGE_TEXT),
         (["1", "5", "10", "3"], USAGE_TEXT),
+
+        # Sneaky cases
+        (["10"], my_range(10)),
+        (["-10"], my_range(-10)),
     ]
 
     launch_tests(FILENAME, TEST_CASES)
