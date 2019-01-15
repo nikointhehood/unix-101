@@ -673,6 +673,124 @@ $./print_first_line.py resources/
 Unexpected error
 \end{lstlisting}
 
+\subsection{New notions}
+
+To complete this exercise, you need to know a few more things.
+
+\subsubsection{Files in UNIX}
+
+In UNIX, it is said that \textit{Everything is a file}\footnote{A view closer to reality would be to say that \textit{Everything is represented as a file in your filesystem}}.
+
+In fact, everything, from the status of the light of your "Caps lock" key to the configuration of your applications is either in a file, represented by a file of editable through a file or somewhere in your file system. By editing the right value in the right file, you can modify the light of your "Caps lock" key, for example!
+What is more, many applications keep their configuration in a file (often in \texttt{/etc}) and read it when booting.
+
+Knowing how to open, read and edit files programmatically is thus extremely important.
+
+\subsubsection{File descriptor}
+
+To be able to read or edit a file, one must first open it. Python provides an easy-to-use function to do that: \href{https://docs.python.org/3/library/functions.html\#open}{open()}.
+
+On UNIX, the function \texttt{open} returns a \textit{file descriptor}. A \textit{file descriptor} is simply an integer linked to a file allowing one to interact with it.
+Python is kinder than the raw system calls: its \texttt{open()} functions returns a \textit{file object}, which is basically a \textit{file descriptor} bundled with useful functions.
+
+File objects allow one to read or write to their corresponding file descriptor (and thus, to their corresponding file): \texttt{file\_object.readlines()} or \texttt{file\_object.write()} are perfect examples.
+The many functions allowing one to manipulate a file descriptor are findable here: \url{https://docs.python.org/3.5/library/io.html\#i-o-base-classes}.
+
+Let's see an example:
+
+\begin{lstlisting}[language=python,style=codestyle,title=test\_readlines.py]
+#! /usr/bin/python3
+
+# Open the file
+fo = open("/etc/hostname")
+# Read from the file object
+lines = fo.readlines()
+# Do not forget to close the file! Although Python will take care of it if you forget in most cases, it is generally bad to keep file descriptors hanging for no reason
+fo.close()
+
+# Now, print what we have read
+print(lines)
+\end{lstlisting}
+
+Launching it, we obtain:
+
+\begin{lstlisting}[language=bash]
+$./test_readlines.py
+['nicolas-laptop\n']
+\end{lstlisting}
+
+\subsubsection{Handling files: flags}
+
+Looking at the prototype of \texttt{open()}\footnote{\href{https://docs.python.org/3/library/functions.html\#open}{click here!}}, you may have noticed an optional \texttt{mode} argument, defaulting to \texttt{"r"}.
+
+This arguments indicates for what usage the file should be open.
+For example, if you only need to read from a file, you should use the default mode \texttt{"r"}. If you want to both read and write, you should use \texttt{"rw"}. If you want to read raw \texttt{bytes} from a file, you should use \texttt{"rb"}.
+As you can see, you can combine them.
+
+There are other flags, read what they do. You will have to use them to solve the exercises.
+
+\subsubsection{Handling files: exceptions}
+
+The example we wrote worked like a charm for the file \texttt{/etc/hostname}. However, life is not always so good. There are many many (many!) reasons why your operating system would not let you peek into a file or write into a file.
+
+If \texttt{open} or the functions bundled with a file object fail because of your system, Python will raise an \texttt{OSError}.
+
+For example, if you do not have write permissions to a file but try to open it with the "w" flag, Python will raise a \texttt{PermissionError}.
+We say that \texttt{PermissionError} is a subclass of \texttt{OSError}: it is catchable using either \texttt{except PermissionError} or \texttt{except OSError}. The complete hierarchy of Python built-in exceptions is avaible at \href{https://docs.python.org/3.5/library/exceptions.html\#exception-hierarchy}{this link}.
+
+Let's see an example:
+
+\begin{lstlisting}[language=python,style=codestyle,title=restricted\_write.py]
+#! /usr/bin/python3
+
+# Open the file
+fo = open("/tmp/restricted_file.txt", "w")
+# Write to the file object
+fo.write("Hello")
+# Close the file
+fo.close()
+\end{lstlisting}
+
+Launching it, we obtain:
+
+\begin{lstlisting}[language=bash]
+$cat /tmp/restricted_file.txt 
+Yaaa
+$chmod -w /tmp/restricted_file.txt
+$ls -lh /tmp/restricted_file.txt 
+-r--r--r-- 1 nicolas nicolas 5 janv. 15 23:11 /tmp/restricted_file.txt
+$./restricted_write.py 
+Traceback (most recent call last):
+  File "./restricted_write.py", line 3, in <module>
+    fo = open("/tmp/restricted_file.txt", "w")
+PermissionError: [Errno 13] Permission denied: '/tmp/restricted_file.txt'
+\end{lstlisting}
+
+A simple way to catch this kind of issue is to wrap the dangerous calls around a simple \texttt{try}/\texttt{except}:
+
+\begin{lstlisting}[language=python,style=codestyle,title=restricted\_write\_safer.py]
+#! /usr/bin/python3
+
+# Open the file
+try:
+    fo = open("/tmp/restricted_file.txt", "w")
+    # Write to the file object
+    fo.write("Hello")
+    # Close the file
+    fo.close()
+except PermissionError:
+    print("Could not open file /tmp/restricted_file.txt: Permission denied!")
+\end{lstlisting}
+
+The exception is nicely catched:
+
+\begin{lstlisting}[language=bash]
+$./restricted_write_safer.py 
+Could not open file /tmp/restricted_file.txt: Permission denied!
+\end{lstlisting}
+
+Additionally, when one tries to perform non-allowed file object actions (like reading from a file opened in write mode), Python will raise a \texttt{io.UnsupportedOperation} (\url{https://docs.python.org/3.5/library/io.html\#io.UnsupportedOperation}).
+
 \section{Evaluation}
 \subsection{Instructions}
 \newdate{duedate}{30}{01}{2019}
