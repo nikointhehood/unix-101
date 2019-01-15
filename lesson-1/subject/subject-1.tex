@@ -690,8 +690,8 @@ Knowing how to open, read and edit files programmatically is thus extremely impo
 
 To be able to read or edit a file, one must first open it. Python provides an easy-to-use function to do that: \href{https://docs.python.org/3/library/functions.html\#open}{open()}.
 
-On UNIX, the function \texttt{open} returns a \textit{file descriptor}. A \textit{file descriptor} is simply an integer linked to a file allowing one to interact with it.
-Python is kinder than the raw system calls: its \texttt{open()} functions returns a \textit{file object}, which is basically a \textit{file descriptor} bundled with useful functions.
+In UNIX, the function \texttt{open} usually returns a \textit{file descriptor}. A \textit{file descriptor} is simply an integer linked to a file allowing one to interact with it.
+Actually, you are lucky. Python is kinder than the raw system calls: its \texttt{open()} functions returns a \textit{file object}, which is basically a \textit{file descriptor} bundled with useful functions that you can invoke.
 
 File objects allow one to read or write to their corresponding file descriptor (and thus, to their corresponding file): \texttt{file\_object.readlines()} or \texttt{file\_object.write()} are perfect examples.
 The many functions allowing one to manipulate a file descriptor are findable here: \url{https://docs.python.org/3.5/library/io.html\#i-o-base-classes}.
@@ -808,7 +808,7 @@ subject/ tutorial/
 $tar cvfj firstname_lastname.tar.bz2 subject/
 (...)
 $ls
-subject/ tutorial firstname_lastname.tar.bz2
+subject/ tutorial/ firstname_lastname.tar.bz2
 \end{lstlisting}
 
 To verify that your archive contains everything you want, copy it somewhere else and decompress it:
@@ -825,12 +825,14 @@ $ls -l
 # You should see what I will obtain when extracting your archive
 (...)
 \end{lstlisting}
-
+%TODO Put the example of a untarred tarball
 \subsection{A word on cheating}
 
 You have to remember that you should be studying for your own good. Cheating will not bring you any good in the long term; it is fine not to be able to finish every exercise of the subject, your main goal is to train and learn things.
 
 Any form of cheating will immediately bring your grade down to 0. Additionally, your main teacher will be taken notice of that.
+
+A particular attention will be given to your \texttt{README} files.
 
 \textit{Note:} Changing the name of some variables will of course not trick the anti-cheat engine :)
 
