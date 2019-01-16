@@ -169,7 +169,8 @@ Unpacking objects: 100% (40/40), done.
 Checking connectivity... done.
 $ls
 unix-101/ # There we have it!
-$ls unix-101/subject/
+$ls unix-101/lesson-1/subject/exercises
+exercise-0/  exercise-1/  exercise-2/  exercise-3/  exercise-4/  exercise-5/  exercise-6/  exercise-7/  tests_framework.py
 \end{lstlisting}
 
 Github is a service hosting git servers. There exist others (Gitlab, Bitbucket, even private instances of Gitlab/Github/Bitbucket for companies, etc) but Github is widely used for open-source projects.
@@ -951,17 +952,42 @@ To verify that your archive contains everything you want, copy it somewhere else
 
 \begin{lstlisting}[language=bash]
 $ls
-subject/ tutorial firstname_lastname.tar.bz2
+firstname_lastname.tar.bz2  subject/  tutorial/
 $mkdir /tmp/test
 $cp firstname_lastname.tar.bz2 /tmp/test
 $cd /tmp/test
 # x stands for eXtract, v for verbose and f allows one to indicate which file tar should work with
 $tar xvf firstname_lastname.tar.bz2
-$ls -l
 # You should see what I will obtain when extracting your archive
-(...)
+$tree --charset=ascii
+.
+|-- firstname_lastname.tar.bz2
+`-- subject
+    |-- exercises
+    |   |-- exercise-0
+    |   |   |-- biggest.py
+    |   |   |-- README
+    |   |   `-- run_tests.py
+# (...)
+    |   |-- exercise-7
+    |   |   |-- print_first_bytes.py
+    |   |   |-- README
+    |   |   |-- resources
+    |   |   |   |-- hosts
+    |   |   |   |-- ls_only_4_original
+    |   |   |   |-- ls_only_4_target
+    |   |   |   |-- ls_only_50_original
+    |   |   |   |-- ls_only_50_target
+    |   |   |   |-- ls_original
+    |   |   |   |-- ls_target
+    |   |   |   `-- no_line_feed.txt
+    |   |   `-- run_tests.py
+    |   `-- tests_framework.py
+    `-- subject-1.tex
+
+14 directories, 49 files
 \end{lstlisting}
-%TODO Put the example of a untarred tarball
+
 \subsection{A word on cheating}
 
 You have to remember that you should be studying for your own good. Cheating will not bring you any good in the long term; it is fine not to be able to finish every exercise of the subject, your main goal is to train and learn things.
