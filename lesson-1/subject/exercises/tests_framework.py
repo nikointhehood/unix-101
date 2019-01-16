@@ -30,7 +30,7 @@ def launch_tests(filename: str, test_cases: List[Tuple[List, bytes]]) -> None:
     for test_arguments, expected_output in test_cases:
         # This is a file edition check
         if isinstance(test_arguments, tuple):
-            completed_okay, output = True, test_arguments[0](test_arguments[1])
+            completed_okay, output = True, test_arguments[0](*test_arguments[1:])
         # This is a subprocess.run() need
         else:
             completed_okay, output = launch_command(filename, test_arguments)
@@ -40,8 +40,12 @@ def launch_tests(filename: str, test_cases: List[Tuple[List, bytes]]) -> None:
             continue
         colored_print(test_arguments, False)
         if completed_okay:
-            print("--> Got unexpected output, obtained {} when {} was "
-                  "expected\n".format(repr(output.decode()), repr(expected_output.decode())), end='')
+            try:
+                print("--> Got unexpected output, obtained {} when {} was "
+                      "expected\n".format(repr(output.decode()), repr(expected_output.decode())), end='')
+            except UnicodeDecodeError:
+                print("--> Got unexpected output, obtained {} when {} was "
+                      "expected\n".format(output, expected_output), end='')
         else:
             print("--> Your script encountered an error: {}\n".format(output.decode()), end='')
         return
