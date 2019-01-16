@@ -724,7 +724,7 @@ $./test_readlines.py
 Looking at the prototype of \texttt{open()}\footnote{\href{https://docs.python.org/3/library/functions.html\#open}{click here!}}, you may have noticed an optional \texttt{mode} argument, defaulting to \texttt{"r"}.
 
 This arguments indicates for what usage the file should be open.
-For example, if you only need to read from a file, you should use the default mode \texttt{"r"}. If you want to both read and write, you should use \texttt{"rw"}. If you want to read raw \texttt{bytes} from a file, you should use \texttt{"rb"}.
+For example, if you need to read from a file, you should use the default mode \texttt{"r"}. If you want write to a file, you should use \texttt{"w"}. If you want to read raw \texttt{bytes} from a file, you should combine the read flag and the binary mode flag (\texttt{"rb"}).
 As you can see, you can combine them.
 
 There are other flags, read what they do. You will have to use them to solve the exercises.
