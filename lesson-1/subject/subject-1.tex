@@ -841,6 +841,47 @@ This is a file which does not end with a line feed.$./print_first_line_better.py
 Unexpected error
 \end{lstlisting}
 
+\section{Exercise 6: hello}
+\subsection{Goal}
+
+\begin{description}
+        \item[Script name:] \texttt{hello.py}
+\end{description}
+
+You have to write a Python3 script that will take one string argument as input. The string argument should be the filepath to a file.
+
+Your script should append the string \texttt{hello} to the file given as argument.
+
+\begin{itemize}
+\item If the current user does not have sufficient permissions to write to the file, print \texttt{"Unsufficient permissions"}, followed by a line feed.
+
+\item If the file does not exist, the file should be created and contain \texttt{hello}.
+
+\item If another error is raised, print \texttt{"Unexpected error"}, followed by a line feed.
+
+\item If the number of arguments is different than 1, print the following usage, followed by a line feed: \texttt{"Usage: ./hello.py filepath"}.
+\end{itemize}
+
+Also, you are asked to provide a small file named \texttt{README} explaining how you solved the exercise.
+
+\subsection{Example}
+
+\begin{lstlisting}[language=bash]
+$./hello.py 
+Usage: ./hello.py filepath
+$./hello.py /etc/hosts aaa
+Usage: ./hello.py filepath
+$cat mdr.txt
+cat: mdr: No such file or directory
+$./hello.py mdr.txt
+$cat mdr.txt
+hello$./hello.py mdr.txt
+$cat mdr.txt
+hellohello$./hello.py /etc/protocols
+Unsufficient permissions
+$./hello.py /tmp
+Unexpected error
+\end{lstlisting}
 
 \section{Evaluation}
 \subsection{Instructions}
