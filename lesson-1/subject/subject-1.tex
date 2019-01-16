@@ -837,7 +837,7 @@ Unsufficient permissions
 $./print_first_line_better.py ../tests_framework.py 
 from subprocess import run, PIPE, CalledProcessError, TimeoutExpired
 $./print_first_line_better.py resources/no_line_feed.txt 
-This is a file which does not end with a line feed.$./print_first_line_better.py resources/ #Notice the difference?
+This is a file which does not end with a line feed.$./print_first_line_better.py resources/ # ^ Notice the difference?
 Unexpected error
 \end{lstlisting}
 
@@ -881,6 +881,48 @@ hellohello$./hello.py /etc/protocols
 Unsufficient permissions
 $./hello.py /tmp
 Unexpected error
+\end{lstlisting}
+
+\section{Exercise 7: write\_first\_bytes}
+\subsection{Goal}
+
+\begin{description}
+        \item[Script name:] \texttt{write\_first\_bytes.py}
+\end{description}
+
+You have to write a Python3 script that will take two string argument and an optional int argument as input. The string arguments should be  the filepath to files. The first one should exist and the second one can not exist.
+
+Your script should copy the bytes of the first file to the second one. If a third integer argument is given, you should only copy the first \texttt{x} bytes of the source file.
+
+\begin{itemize}
+\item If the current user does not have sufficient permissions to access to a file, print \texttt{"Unsufficient permissions"}, followed by a line feed.
+
+\item If the destination file does not exist, it should be created.
+
+\item If the destination file already exists, it should be replaced.
+
+\item If another error is raised, print \texttt{"Unexpected error"}, followed by a line feed.
+
+\item If there are more than 3 arguments or if the third argument is not an integer or if there is less than 2 arguments, print the following usage, followed by a line feed:
+
+\texttt{"Usage: ./print\_first\_bytes.py src\_filepath dst\_filepath [int]"}.
+\end{itemize}
+
+Also, you are asked to provide a small file named \texttt{README} explaining how you solved the exercise.
+
+\subsection{Example}
+
+\begin{lstlisting}[language=bash]
+$./print_first_bytes.py /bin/ls test 4
+$cat test 
+ELF$./print_first_bytes.py /bin/ls my_own_ls
+$chmod +x my_own_ls 
+$./my_own_ls 
+my_own_ls  print_first_bytes.py  resources  run_tests.py
+$./print_first_bytes.py /bin/ls test abcd
+Usage: ./print_first_bytes.py src_filepath dst_filepath [int]
+$./print_first_bytes.py /bin/ls test 4 yoo
+Usage: ./print_first_bytes.py src_filepath dst_filepath [int]
 \end{lstlisting}
 
 \section{Evaluation}
