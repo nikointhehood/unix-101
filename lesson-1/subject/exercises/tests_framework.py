@@ -28,7 +28,13 @@ def colored_print(test_name: str, success: bool) -> None:
 
 def launch_tests(filename: str, test_cases: List[Tuple[List, bytes]]) -> None:
     for test_arguments, expected_output in test_cases:
-        completed_okay, output = launch_command(filename, test_arguments)
+        # This is a file edition check
+        if isinstance(test_arguments, tuple):
+            completed_okay, output = True, test_arguments[0](test_arguments[1])
+        # This is a subprocess.run() need
+        else:
+            completed_okay, output = launch_command(filename, test_arguments)
+
         if completed_okay and output == expected_output:
             colored_print(test_arguments, True)
             continue
