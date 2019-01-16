@@ -819,6 +819,8 @@ Last but not least, the syntax is way clearer than the standard one. You are str
 	\end{itemize}
 \end{description}
 
+Because by default \texttt{print()} automatically inserts a line feed, if a file ends with a line feed too, we have a big interval in our terminal.
+
 You have to write a Python3 script that will do the exact same thing as the previous one, except that it should not add a line feed after printing the first line of a file.
 
 Also, you are asked to provide a small file named \texttt{README} explaining how you solved the exercise.
@@ -890,7 +892,7 @@ Unexpected error
         \item[Script name:] \texttt{write\_first\_bytes.py}
 \end{description}
 
-You have to write a Python3 script that will take two string argument and an optional int argument as input. The string arguments should be  the filepath to files. The first one should exist and the second one can not exist.
+You have to write a Python3 script that will take two string argument and an optional integer argument as input. The string arguments should be  the filepath to files. The first one should exist and the second one can not exist.
 
 Your script should copy the bytes of the first file to the second one. If a third integer argument is given, you should only copy the first \texttt{x} bytes of the source file.
 
