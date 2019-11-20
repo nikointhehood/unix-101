@@ -332,12 +332,11 @@ As its name indicates it, this command allows one to create a new directory.
 \begin{enumerate}
 \item Move to your home directory and create a directory named \texttt{code}
 \item Move to your home directory and, with a single \texttt{mkdir} command, create the two directories \texttt{code/python} and \texttt{code/python/exo\_1}
-\item Bonus: find another way to do it
 \end{enumerate}
 
 \subsubsection{rmdir ("remove directory")}
 
-As we just saw how to \textit{make} a directory, we are now going over how to \textit{remove} one.
+As we just saw how to \textit{make} a directory, this allows one to \textit{remove} one.
 Note that this command only works on empty directories.
 
 \subsubsection{cp ("copy")}
@@ -655,7 +654,7 @@ Write-only&\textbf{-w-}&\textbf{2}\\
 Write \& execute&\textbf{-wx}&\textbf{3} (2 + 1)\\
 Read-only&\textbf{r--}&\textbf{4}\\
 Read \& execute&\textbf{r-x}&\textbf{5} (4 + 1)\\
-Read \& write&\textbf{-wx}&\textbf{6} (4 + 2)\\
+Read \& write&\textbf{rw-}&\textbf{6} (4 + 2)\\
 Read \& write \& execute&\textbf{rwx}&\textbf{7} (4 + 2 + 1)\\
 \bottomrule
 \end{tabular}
@@ -666,7 +665,7 @@ Read \& write \& execute&\textbf{rwx}&\textbf{7} (4 + 2 + 1)\\
 
 In UNIX-like systems, we say that a file is owned by a user. If the user \texttt{nicolas} creates a file, he will be the owner.
 
-Linking that distinction to the mechanism of file permissions, a file your filesystem is supposed to have three triplets of permissions: one for the user which owns it, one for the group of the user which owns it and lastly one for every other user of the system.
+Linking that distinction to the mechanism of file permissions, a file in your filesystem is supposed to have three triplets of permissions: one for the user which owns it, one for the group of the user which owns it and lastly one for every other user of the system.
 
 This "triple triplet" is in the following order: \textit{user, group, others}.
 
