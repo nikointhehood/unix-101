@@ -221,6 +221,43 @@ The \texttt{man} command gives information about the command given as argument. 
 
 Also, at the top of every man page is the prototype (\textit{"synopsys"}) of the command. It will help you figure out how you should call it, in which order the arguments can be put and which arguments are mandatory for the command to run.
 
+\subsection{Demystifying "commands"} \label{demystifying_commands}
+
+Actually, the term \textit{command} is not accurate.
+
+When one launches the command \texttt{ls}, the program at location \texttt{/bin/ls} is executed by the shell. Then, in this case, entering in the shell \texttt{ls} is the same as entering \texttt{/bin/ls}, but faster.
+
+Using \texttt{which ls} tells you where the program \texttt{ls} is located.
+One simply has to list the content of the directory \texttt{/bin} to verify that \texttt{ls} is a program that lies there:
+
+\begin{lstlisting}[language=bash]
+$ls -l /bin
+total 13044
+(...)
+-rwxr-xr-x 1 root root   56152 mars   2  2017 ln
+-rwxr-xr-x 1 root root  111496 sept. 22  2016 loadkeys
+-rwxr-xr-x 1 root root   48128 mars  26  2019 login
+-rwxr-xr-x 1 root root  453856 juin  27 17:49 loginctl
+-rwxr-xr-x 1 root root  105136 mars  21  2019 lowntfs-3g
+-rwxr-xr-x 1 root root  126584 mars   2  2017 ls
+-rwxr-xr-x 1 root root   77280 oct.  10 11:34 lsblk
+(...)
+\end{lstlisting}
+
+By the way, \texttt{which} is also a program, so entering \texttt{which which} in the shell works!
+
+However, some commands do not depend on the programs on your system. They are contained within the shell tool set, literally built in. Thus, we call then... built-in commands\footnote{\href{https://unix.stackexchange.com/questions/11454/what-is-the-difference-between-a-builtin-command-and-one-that-is-not}{This question}'s responses might give you a deeper understanding of the difference between these two types of commands}.
+
+Before ending this section, it is important to understand that there is no black magic in UNIX systems. The shell does not magically know where to look for the program \texttt{ls} when an user inputs that. There is a special variable that the shell keeps track of: the \texttt{PATH}.
+
+\begin{lstlisting}[language=bash]
+$echo $PATH # Show the content of PATH variable
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+\end{lstlisting}
+
+It references all of the location where binaries are supposed to sit, separated by a colon (\texttt{:}).
+When the shell encounters a non-builtin command, it will simply check in all of the locations referenced in the path, one by one, if there is a program named as the command. If there is one, it will start it; if not, it will raise an error.
+
 \subsection{Why the command line?}
 
 Now you may be wondering why bother using fastidious commands to simply show a list of files. It would be way simpler to use a graphical tool like Mac's Finder or Windows's file explorer!
@@ -276,9 +313,8 @@ This command allows you to move from one directory to another. It is similar to 
 \begin{enumerate}
 \item Try to open the man for this command. What happens?
 
-\texttt{cd} is a builtin command. For now, you do not need to understand the differences between a built-in and a non-built-in command; simply note that to get help for this kind of commands,
-you can use \texttt{help my\_command} or \texttt{man builtins}
-\footnote{A built-in command is actually a command provided by the shell. Most of the commands usable (\texttt{ls}, for example) are simply programs that are launched by the invocation of the related command. Using \texttt{which ls} tells you where the program \texttt{ls} is located. \href{https://unix.stackexchange.com/questions/11454/what-is-the-difference-between-a-builtin-command-and-one-that-is-not}{This question}'s responses might give you a deeper understanding of the difference between these two types of commands}.
+\texttt{cd} is a builtin command (cf. \ref{demystifying_commands}). \texttt{man} works only with actual programs installed on your system. To get help for this kind of commands,
+you can use \texttt{help my\_command}.
 \item What is the difference between writing \texttt{cd /bin} and \texttt{cd bin}?
 \item Move anywhere in your filesystem. Then, type \texttt{cd} without any argument. Where are you now?
 \item Move anywhere in your filesystem. Then, type \texttt{cd ~}. Where are you now?
